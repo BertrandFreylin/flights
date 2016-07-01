@@ -271,7 +271,7 @@
 		Chart 7: MAP - DELAY : Retard du vol en fonction de l'aéroport de départ
 	****************************************/
 	getRequest("webservices/delays_dep.php", function(datas_delays) {
-		map_array_delays_dep = [['Etat', 'Retard par avion en minutes (en fonction du nombre de départ)'],];
+		map_array_delays_dep = [['Etat', 'Retard par avion en minutes (en fonction de l\'aéroport de départ)'],];
 		var total = 0;
 		for (var i = 0; i<datas_delays.length; i++) {
 				var state = datas_delays[i]['state'];
@@ -304,7 +304,7 @@
 		Chart 8: MAP - DELAY : Retard du vol en fonction de l'aéroport d'arrivée
 	****************************************/
 	getRequest("webservices/delays_arr.php", function(datas_delays) {
-		map_array_delays_dest = [['Etat', 'Retard par avion en minutes (en fonction du nombre d\'arrivée)'],];
+		map_array_delays_dest = [['Etat', 'Retard par avion en minutes (en fonction de l\'aéroport d\'arrivée)'],];
 		var total = 0;
 		for (var i = 0; i<datas_delays.length; i++) {
 				var state = datas_delays[i]['state'];
@@ -370,20 +370,20 @@
         var data = google.visualization.arrayToDataTable(distance_delays_compute);
 		var options = {
           chart: {
-            title: 'Retard / Distance',
-            subtitle: 'par Date de construction de l\'avion'
+            title: 'Retard par avion / Distance par avion',
+            subtitle: 'par Date de construction des avions'
           },
           hAxis: {format:'',},
-          vAxis: {format:'',},
+          vAxis: {},
 
           series: {
-            0: {axis: 'Distance'},
-            1: {axis: 'Retard'}
+            0: {axis: 'Distance par avion en Miles'},
+            1: {axis: 'Retard par avion en minutes'}
           },
           axes: {
             y: {
-              'Distance': {label: 'Distance'},
-              'Retard': {label: 'Retard'}
+              'Distance par avion en Miles': {label: 'Distance par avion en Miles'},
+              'Retard par avion en minutes': {label: 'Retard par avion en minutes'}
             }
           },
         };
@@ -402,8 +402,8 @@
 
 
         var options = {
-          title: 'Distance total en Miles / Année de construction de l\'avion',
-          hAxis: {title: 'Année de construction', format:'', minValue: 1960, maxValue: 2008},
+          title: 'Distance total en Miles / Année de construction des avions',
+          hAxis: {title: 'Année de construction', format:''},
           vAxis: {title: 'Distance en Miles parcouru', format:'',},
           legend: 'none',
           trendlines: { 0: {} }
@@ -422,8 +422,8 @@
 
         var options = {
           title: 'Distance par avion par année de construction',
-          hAxis: {title: 'Année de construction', format:'', minValue: 1960, maxValue: 2008},
-          vAxis: {title: 'Distance', format:'',},
+          hAxis: {title: 'Année de construction', format:''},
+          vAxis: {title: 'Distance en Miles parcouru', format:'',},
           legend: 'none',
           trendlines: { 0: {} },
         };
@@ -443,8 +443,8 @@
 
 
         var options = {
-          title: 'Retard total en Minutes / Année de construction de l\'avion',
-          hAxis: {title: 'Année de construction', format:'', minValue: 1960, maxValue: 2008},
+          title: 'Retard total en Minutes / Année de construction des avions',
+          hAxis: {title: 'Année de construction', format:''},
           vAxis: {title: 'Retard en minutes', format:''},
           legend: 'none',
           trendlines: { 0: {} },
@@ -464,8 +464,8 @@
 
         var options = {
           title: 'Retard par avion par année de construction',
-          hAxis: {title: 'Année de construction', format:'', minValue: 1960, maxValue: 2008},
-          vAxis: {title: 'Retard', format:''},
+          hAxis: {title: 'Année de construction', format:''},
+          vAxis: {title: 'Retard en minutes', format:''},
           legend: 'none',
           trendlines: { 0: {} },
           series: {0:{color: 'green'},1:{color: 'green'}},
@@ -512,7 +512,7 @@
         var data = google.visualization.arrayToDataTable(manufacturerday);
 
         var options = {
-          title: 'Vols par marque / mois',
+          title: 'Vols par marque / jour du mois',
           curveType: 'function',
           legend: { position: 'bottom' }
         };
