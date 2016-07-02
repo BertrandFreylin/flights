@@ -42,6 +42,7 @@
 			<div id="manufacturer_day" class="graph"><div class="modal"></div></div>
 			<div id="carriers_cancel" class="graph_middle"><div class="modal"></div></div>
 			<div id="carriers_cancel_ratio" class="graph_middle"><div class="modal"></div></div>
+			<div id="table_airport" class="graph"><div class="modal"></div></div>
 		</div>
 		<?php include ('structure/footer.php'); ?>
 	</body>

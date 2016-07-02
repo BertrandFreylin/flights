@@ -13,7 +13,7 @@ $(document).ready(function() {
         });
     }
 
-    google.charts.load('current', { packages: ['corechart', 'geochart', 'scatter'] });
+    google.charts.load('current', { packages: ['corechart', 'geochart', 'scatter', 'table'] });
 
 
     /***************************************
@@ -506,7 +506,7 @@ $(document).ready(function() {
             ['Aéroport', 'Nombre d\'annulation'],
         ];
         map_cancel_carrier_ratio = [
-            ['Aéroport', 'Nombre d\'annulation rationalisé'],
+            ['Aéroport', 'Nombre d\'annulation rationalisé (comparé au nombre de départ'],
         ];
         for (var i = 0; i < 20; i++) {
             var airport = airport_cancel[i]['airport'];
@@ -561,7 +561,6 @@ $(document).ready(function() {
         carriers_cancel_array_ratio = [
             ['Annulation par compagnie rationalisée', 'Nombre d\'annulation'],
         ];
-        var total = 0;
         for (var i = 0; i < datas_carriers_cancel.length; i++) {
             var name = datas_carriers_cancel[i]['carrier'];
             var num_carriers = datas_carriers_cancel[i]['somme'];
@@ -593,11 +592,51 @@ $(document).ready(function() {
         var data = google.visualization.arrayToDataTable(carriers_cancel_array_ratio);
 
         var options = {
-            title: 'Annulation par compagnie rationalisée'
+            title: 'Annulation par compagnie rationalisée (comparé avec le total de vol par compagnie)'
         };
 
         var chart = new google.visualization.PieChart(document.getElementById('carriers_cancel_ratio'));
 
         chart.draw(data, options);
     };
+
+    /***************************************
+    	Chart 42: TAB Airport Carrier
+    ****************************************/
+
+    getRequest("webservices/carriers_airports.php", function(datas_carriers_airport) {
+        carriers_airport = [];
+        for (var i = 0; i < datas_carriers_airport.length; i++) {
+            var airport = datas_carriers_airport[i]['airport'];
+            var max = datas_carriers_airport[i]['vols_total'];
+            var carrier = datas_carriers_airport[i]['carrier'];
+            for (var j = i+1; j < datas_carriers_airport.length; j++) {
+	            if (datas_carriers_airport[j]['airport']==airport) {
+					if (datas_carriers_airport[j]['vols_total']>max) {
+	        			max = datas_carriers_airport[j]['vols_total'];
+	        			carrier = datas_carriers_airport[j]['carrier'];
+	        		}
+	            } 
+	            else {
+	            	break;
+	            }
+            };
+            carriers_airport.push([airport,carrier,max]);
+            i=j;
+        };
+        TableAirportCarrier(carriers_airport);
+    });
+
+	function TableAirportCarrier() {
+        var data = new google.visualization.DataTable();
+        data.addColumn('string', 'Aéroport');
+        data.addColumn('string', 'Compagnie la plus représentée');
+        data.addColumn('number', 'Nombre de vols');
+        data.addRows(carriers_airport);
+
+        var table = new google.visualization.Table(document.getElementById('table_airport'));
+
+        table.draw(data, {showRowNumber: true, width: '100%', height: '100%'});
+      }
+
 });
