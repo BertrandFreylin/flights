@@ -44,8 +44,8 @@ body {
 }
 
 #content {
-    margin-top: 90px;
-    padding-top: 90px;
+    margin-top: 20px;
+    padding-top: 20px;
 }
 
 .modal {
@@ -61,17 +61,18 @@ body {
                 no-repeat;
 }
 
-.graph.loading {
+.master_graph.loading {
     overflow: hidden;   
 }
 
-.graph.loading .modal {
+.master_graph.loading .modal {
     display: block;
-}
-.graph_middle.loading .graph.loading {
-    overflow: hidden;   
 }
 
-.graph_middle.loading .modal {
-    display: block;
+.master_graph {
+    width: 100%;
+    height: 450px;
+}
+.center {
+    text-align: center;
 }

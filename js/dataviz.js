@@ -1,7 +1,6 @@
 $(document).ready(function() {
     // Pas de cache sur les requête IMPORTANT !
-    $('.graph').addClass("loading");
-    $('.graph_middle').addClass("loading");
+    $('.master_graph').addClass("loading");
 
     $.ajaxSetup({ cache: false });
 
@@ -48,7 +47,6 @@ $(document).ready(function() {
         var data = google.visualization.arrayToDataTable(arrival_departure_array);
 
         var options = {
-            title: 'Départ-Arrivée',
             chartArea: { width: '50%' },
             hAxis: {
                 title: 'Departure-Arrival order',
@@ -88,7 +86,6 @@ $(document).ready(function() {
         var data = google.visualization.arrayToDataTable(carriers_array);
 
         var options = {
-            title: 'Pourcentage par compagnie'
         };
 
         var chart = new google.visualization.PieChart(document.getElementById('carriers'));
@@ -139,7 +136,6 @@ $(document).ready(function() {
         var data = google.visualization.arrayToDataTable(carriers_distance_array);
 
         var options = {
-            title: 'Distance par jour du mois',
             vAxis: { title: 'Miles' },
             seriesType: 'bars',
             series: { 6: { type: 'line' } },
@@ -178,7 +174,6 @@ $(document).ready(function() {
         var data = google.visualization.arrayToDataTable(map_array);
 
         var options = {
-            title: 'Departure-Arrival Map',
             region: 'US',
             displayMode: 'markers',
             colorAxis: { colors: ['#e7711c', '#4374e0'] },
@@ -214,7 +209,6 @@ $(document).ready(function() {
         var data = google.visualization.arrayToDataTable(map_array_delays_dep);
 
         var options = {
-            title: 'Delays Map',
             region: 'US',
             resolution: 'provinces',
             colorAxis: { colors: ['#4374e0', '#e7711c'] }
@@ -249,7 +243,6 @@ $(document).ready(function() {
         var data = google.visualization.arrayToDataTable(map_array_delays_dest);
 
         var options = {
-            title: 'Delays Map',
             region: 'US',
             resolution: 'provinces',
             colorAxis: { colors: ['#4374e0', '#e7711c'] }
@@ -304,10 +297,6 @@ $(document).ready(function() {
     function DistanceDelayCompute() {
         var data = google.visualization.arrayToDataTable(distance_delays_compute);
         var options = {
-            chart: {
-                title: 'Retard par avion / Distance par avion',
-                subtitle: 'par Date de construction des avions'
-            },
             hAxis: { format: '', },
             vAxis: {},
 
@@ -337,7 +326,6 @@ $(document).ready(function() {
 
 
         var options = {
-            title: 'Distance total en Miles / Année de construction des avions',
             hAxis: { title: 'Année de construction', format: '' },
             vAxis: { title: 'Distance en Miles parcouru', format: '', },
             legend: 'none',
@@ -356,7 +344,6 @@ $(document).ready(function() {
 
 
         var options = {
-            title: 'Distance par avion par année de construction',
             hAxis: { title: 'Année de construction', format: '' },
             vAxis: { title: 'Distance en Miles parcouru', format: '', },
             legend: 'none',
@@ -378,7 +365,6 @@ $(document).ready(function() {
 
 
         var options = {
-            title: 'Retard total en Minutes / Année de construction des avions',
             hAxis: { title: 'Année de construction', format: '' },
             vAxis: { title: 'Retard en minutes', format: '' },
             legend: 'none',
@@ -399,7 +385,6 @@ $(document).ready(function() {
 
 
         var options = {
-            title: 'Retard par avion par année de construction',
             hAxis: { title: 'Année de construction', format: '' },
             vAxis: { title: 'Retard en minutes', format: '' },
             legend: 'none',
@@ -450,7 +435,6 @@ $(document).ready(function() {
         var data = google.visualization.arrayToDataTable(manufacturerday);
 
         var options = {
-            title: 'Vols par compagnie / jour de la semaine',
             curveType: 'function',
             legend: { position: 'bottom' },
             vAxis: { minValue: 0 },
@@ -524,7 +508,6 @@ $(document).ready(function() {
         var data = google.visualization.arrayToDataTable(map_cancel_carrier);
 
         var options = {
-            title: 'Cancel Map',
             region: 'US',
             displayMode: 'markers',
             colorAxis: { colors: ['#e7711c', '#4374e0'] },
@@ -539,7 +522,6 @@ $(document).ready(function() {
         var data = google.visualization.arrayToDataTable(map_cancel_carrier_ratio);
 
         var options = {
-            title: 'Cancel Map Ratio',
             region: 'US',
             displayMode: 'markers',
             colorAxis: { colors: ['#e7711c', '#4374e0'] },
@@ -579,7 +561,6 @@ $(document).ready(function() {
         var data = google.visualization.arrayToDataTable(carriers_cancel_array);
 
         var options = {
-            title: 'Annulation par compagnie'
         };
 
         var chart = new google.visualization.PieChart(document.getElementById('carriers_cancel'));
@@ -592,7 +573,6 @@ $(document).ready(function() {
         var data = google.visualization.arrayToDataTable(carriers_cancel_array_ratio);
 
         var options = {
-            title: 'Annulation par compagnie rationalisée (comparé avec le total de vol par compagnie)'
         };
 
         var chart = new google.visualization.PieChart(document.getElementById('carriers_cancel_ratio'));
