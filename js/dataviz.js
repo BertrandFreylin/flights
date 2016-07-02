@@ -417,7 +417,7 @@ $(document).ready(function() {
 	****************************************/
     getRequest("webservices/manufacturer_dayweek.php", function(datas_man_day) {
         manufacturerday = [
-            ['Jour de la semaine', 'Boeing', 'Bombardier', 'Embraer', 'Airbus', 'Moyenne', 'Indice Retard'],
+            ['Jour de la semaine', 'Boeing', 'Bombardier', 'Embraer', 'Airbus', 'Moyenne', 'Indice Retard Total'],
         ];
         days = { 1: 'Lundi', 2: 'Mardi', 3: 'Mercredi', 4: 'Jeudi', 5: 'Vendredi', 6: 'Samedi', 7: 'Dimanche' };
         for (var i = 1; i <= 7; i++) {
@@ -608,20 +608,27 @@ $(document).ready(function() {
         carriers_airport = [];
         for (var i = 0; i < datas_carriers_airport.length; i++) {
             var airport = datas_carriers_airport[i]['airport'];
+            var city = datas_carriers_airport[i]['city'];
             var max = datas_carriers_airport[i]['vols_total'];
             var carrier = datas_carriers_airport[i]['carrier'];
+            var total = datas_carriers_airport[i]['vols_total'];
             for (var j = i+1; j < datas_carriers_airport.length; j++) {
 	            if (datas_carriers_airport[j]['airport']==airport) {
 					if (datas_carriers_airport[j]['vols_total']>max) {
 	        			max = datas_carriers_airport[j]['vols_total'];
 	        			carrier = datas_carriers_airport[j]['carrier'];
+	        			total += datas_carriers_airport[j]['vols_total'];
+	        		}
+	        		else {
+	        			total += datas_carriers_airport[j]['vols_total'];
 	        		}
 	            } 
 	            else {
 	            	break;
 	            }
             };
-            carriers_airport.push([airport,carrier,max]);
+            percentage = Math.round(max * 100 / total);
+            carriers_airport.push([city, airport,carrier,max, total, {v: percentage, f: percentage.toString()+' %'}]);
             i=j;
         };
         TableAirportCarrier(carriers_airport);
@@ -629,14 +636,17 @@ $(document).ready(function() {
 
 	function TableAirportCarrier() {
         var data = new google.visualization.DataTable();
+        data.addColumn('string', 'Ville');
         data.addColumn('string', 'Aéroport');
         data.addColumn('string', 'Compagnie la plus représentée');
-        data.addColumn('number', 'Nombre de vols');
+        data.addColumn('number', 'Nombre de vols de la compagnie');
+        data.addColumn('number', 'Nombre de vols total');
+        data.addColumn('number', 'Pourcentage de la compagnie');
         data.addRows(carriers_airport);
 
         var table = new google.visualization.Table(document.getElementById('table_airport'));
 
-        table.draw(data, {showRowNumber: true, width: '100%', height: '100%'});
+        table.draw(data, {showRowNumber: false, width: '100%', height: '100%', sortColumn: 0});
       }
 
 });

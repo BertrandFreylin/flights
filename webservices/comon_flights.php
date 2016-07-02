@@ -7,18 +7,10 @@
 	include("../bdd/connexion_bdd.php");
 	
 
-	$query = "SELECT 
-				a.city,
-				a.airport,
-				c.description,
-				SUM(1) AS flights
-				FROM flights f
-				JOIN airports a ON (a.iata = f.Origin)
-				JOIN carriers c ON (c.code = f.UniqueCarrier)
-				WHERE (c.description IS NOT NULL) AND (a.city IS NOT NULL) AND (a.airport IS NOT NULL)
-				GROUP BY a.city, c.description, a.airport
-				ORDER BY a.airport
-					";
+	$query = "SELECT Origin, Dest, SUM(1) AS common_flight
+				FROM flights
+				GROUP BY Origin, Dest
+				ORDER BY total DESC";
 	
 	$result = mysqli_query($conn, $query);
 
