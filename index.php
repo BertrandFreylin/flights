@@ -42,7 +42,7 @@
 <div class="graph"><p class="center">Nombre de vols par compagnie et retard moyen en fonction du jour de la semaine</p><div id="manufacturer_day" class="master_graph"><div class="modal"></div></div></div>
 <div class="graph_middle"><p class="center">Pourcentage d'annulation des vols par compagnie</p><div id="carriers_cancel" class="master_graph"><div class="modal"></div></div></div>
 <div class="graph_middle"><p class="center">Pourcentage d'annulation des vols par compagnie rationalisé par le nombre de vols total de la compagnie</p><div id="carriers_cancel_ratio" class="master_graph"><div class="modal"></div></div></div>
-<div class="graph"><div id="table_airport" class="master_graph"><div class="modal"></div></div></div>
+<div class="table_graph"><div id="table_airport" class="master_graph"><div class="modal"></div></div></div>
 		</div>
 		<?php include ('structure/footer.php'); ?>
 	</body>

@@ -76,3 +76,7 @@ body {
 .center {
     text-align: center;
 }
+.table_graph {
+    width: 100%;
+    height: 100%;
+}
