@@ -7,21 +7,22 @@
 	include("../bdd/connexion_bdd.php");
 	
 
-	$query = "SELECT a.airport, a.city, f.Origin, SUM(1) AS somme, a.city 
+	$query = "SELECT c.description,
+				SUM(f.`CancellationCode` LIKE 'A') AS somme_cancel,
+				SUM(1) AS total
 				FROM flights f
-				JOIN airports a ON a.iata = f.Origin
-				GROUP BY f.Origin
-				ORDER BY somme DESC";
+				JOIN carriers c ON (c.code = f.UniqueCarrier)
+                GROUP BY c.description
+				ORDER BY somme_cancel DESC";
 	
 	$result = mysqli_query($conn, $query);
 
 	while ($row = mysqli_fetch_array($result)) {
-		$result_request[] = array(
-			'airport_dep' => $row[0], 
-			'airport_city' => $row[1], 
-			'origin' => $row[2], 
-			'num' => intval($row[3]), 
-			'origin_city' => $row[4]);
+			$result_request[] = array(
+				'carrier' => $row[0],
+			 	'somme' => intval($row[1]),
+			 	'total' => intval($row[2])
+			 	);
 	}
 
 	mysqli_free_result($result);

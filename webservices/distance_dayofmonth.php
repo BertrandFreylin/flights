@@ -7,21 +7,16 @@
 	include("../bdd/connexion_bdd.php");
 	
 
-	$query = "SELECT a.airport, a.city, f.Origin, SUM(1) AS somme, a.city 
+	$query = "SELECT f.DayofMonth, f.UniqueCarrier, c.description, SUM(f.Distance) AS distance
 				FROM flights f
-				JOIN airports a ON a.iata = f.Origin
-				GROUP BY f.Origin
-				ORDER BY somme DESC";
+				JOIN carriers c ON c.code = f.UniqueCarrier
+				GROUP BY f.UniqueCarrier, f.DayofMonth
+				ORDER BY `f`.`DayofMonth` ASC, distance DESC";
 	
 	$result = mysqli_query($conn, $query);
 
 	while ($row = mysqli_fetch_array($result)) {
-		$result_request[] = array(
-			'airport_dep' => $row[0], 
-			'airport_city' => $row[1], 
-			'origin' => $row[2], 
-			'num' => intval($row[3]), 
-			'origin_city' => $row[4]);
+			$result_request[] = array('day_of_month' => intval($row[0]), 'carriers_code' => $row[1], 'carriers_name' => $row[2], 'distance' => intval($row[3]));
 	}
 
 	mysqli_free_result($result);

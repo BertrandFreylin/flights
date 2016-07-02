@@ -48,49 +48,30 @@ body {
     padding-top: 90px;
 }
 
-#list-users {
-    position: absolute;
-    right: 0;
-    margin-top: 35px;
-    margin-right: 35px;
-    border: solid 1px #ccc;
-    height: 30px;
+.modal {
+    display:    none;
+    z-index:    1000;
+    top:        0;
+    left:       0;
+    height:     100%;
+    width:      100%;
+    background: rgba( 255, 255, 255, .8 ) 
+                url('../img/loader.gif') 
+                50% 50% 
+                no-repeat;
+}
+
+.graph.loading {
+    overflow: hidden;   
+}
+
+.graph.loading .modal {
     display: block;
-    width: 200px;
+}
+.graph_middle.loading .graph.loading {
+    overflow: hidden;   
 }
 
-.avatar {
-    position: absolute;
-    left: 0;
-    margin-top: 1px;
-}
-
-.avatar img {
-    height: 88px;
-    width: 100px;
-    border-right: solid 1px #ccc;
-}
-
-#user-name {
-    width: auto;
-    margin:auto;
-    margin-top: 35px;
-    font-weight: bold;
-    font-size: 20px;
-    line-height: 20px;
-}
-
-.no-data {
-    margin-top: 220px;
-    color: #ccc;
-    font-size: 30px;
-}
-
-.nav-selection {
-    position: fixed;
-    z-index: 3000;
-    width: 100vw;
-    height:48px;
-    margin-top:-90px;
-    border-bottom: solid 49px #ccc;
+.graph_middle.loading .modal {
+    display: block;
 }

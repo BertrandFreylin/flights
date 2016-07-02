@@ -10,9 +10,9 @@
 	$query = "SELECT c.description, f.UniqueCarrier, SUM(1) AS nombre_vols, SUM(Distance) AS distance
 				FROM flights f
 				JOIN carriers c ON c.code = f.UniqueCarrier
+				WHERE c.description IS NOT NULL
 				GROUP BY f.UniqueCarrier
-				ORDER BY nombre_vols DESC
-				LIMIT 1000";
+				ORDER BY nombre_vols DESC";
 	
 	$result = mysqli_query($conn, $query);
 

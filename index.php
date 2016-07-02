@@ -25,21 +25,23 @@
 	<body>
 		<?php include ('structure/header.php'); ?>
 		<div id="content">
-			<!-- <div id="departure" class="graph_middle"></div> -->
-			<!-- <div id="arrival" class="graph_middle"></div> -->
-			<div id="departure_arrival" class="graph_middle"></div>
-			<div id="carriers" class="graph_middle"></div>
-			<div id="combo_chart" class="graph"></div>
-			<div id="map" class="graph"></div>
-			<div id="map_delays_dep" class="graph_middle"></div>
-			<div id="map_delays_dest" class="graph_middle"></div>
-			<div id="distance_year" class="graph_middle"></div>
-			<div id="delay_year" class="graph_middle"></div>
-			<div id="year_flights" class="graph"></div>
-			<div id="distance_year_bis" class="graph_middle"></div>
-			<div id="delay_year_bis" class="graph_middle"></div>
-			<div id="distance_delays" class="graph"></div>
-			<div id="manufacturer_day" class="graph"></div>
+			<div id="departure_arrival" class="graph_middle"><div class="modal"></div></div>
+			<div id="carriers" class="graph_middle"><div class="modal"></div></div>
+			<div id="combo_chart" class="graph"><div class="modal"></div></div>
+			<div id="map" class="graph"><div class="modal"></div></div>
+			<div id="map_cancel_carrier" class="graph_middle"><div class="modal"></div></div>
+			<div id="map_cancel_carrier_ratio" class="graph_middle"><div class="modal"></div></div>
+			<div id="map_delays_dep" class="graph_middle"><div class="modal"></div></div>
+			<div id="map_delays_dest" class="graph_middle"><div class="modal"></div></div>
+			<div id="distance_year" class="graph_middle"><div class="modal"></div></div>
+			<div id="delay_year" class="graph_middle"><div class="modal"></div></div>
+			<div id="year_flights" class="graph"><div class="modal"></div></div>
+			<div id="distance_year_bis" class="graph_middle"><div class="modal"></div></div>
+			<div id="delay_year_bis" class="graph_middle"><div class="modal"></div></div>
+			<div id="distance_delays" class="graph"><div class="modal"></div></div>
+			<div id="manufacturer_day" class="graph"><div class="modal"></div></div>
+			<div id="carriers_cancel" class="graph_middle"><div class="modal"></div></div>
+			<div id="carriers_cancel_ratio" class="graph_middle"><div class="modal"></div></div>
 		</div>
 		<?php include ('structure/footer.php'); ?>
 	</body>
