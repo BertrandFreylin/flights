@@ -589,9 +589,24 @@ $(document).ready(function() {
         for (var i = 0; i < datas_carriers_airport.length; i++) {
             var airport = datas_carriers_airport[i]['airport'];
             var city = datas_carriers_airport[i]['city'];
+            var state = datas_carriers_airport[i]['state'];
             var max = datas_carriers_airport[i]['vols_total'];
             var carrier = datas_carriers_airport[i]['carrier'];
             var total = datas_carriers_airport[i]['vols_total'];
+            var url_value = 'https://maps.googleapis.com/maps/api/geocode/json?components=administrative_area:'+state.toString()+'|country:US&key=AIzaSyDkp_aypAEozlHaVB4g1wF7F7lsek3OWcU'
+			$.ajax({
+			  url: url_value,
+			  async: false,
+			  dataType: 'json',
+			  success: function (json) {
+			  	if (json.results[0] != undefined) {
+					state = json.results[0]['address_components'][0]['long_name'];
+			  	}
+			  	else if (state=='PR') {
+			  		state = 'Puerto Rico';
+			  	}
+			  }
+			});           
             for (var j = i+1; j < datas_carriers_airport.length; j++) {
 	            if (datas_carriers_airport[j]['airport']==airport) {
 					if (datas_carriers_airport[j]['vols_total']>max) {
@@ -608,7 +623,7 @@ $(document).ready(function() {
 	            }
             };
             percentage = Math.round(max * 100 / total);
-            carriers_airport.push([city, airport,carrier,max, total, {v: percentage, f: percentage.toString()+' %'}]);
+            carriers_airport.push([city, airport, state, carrier,max, total, {v: percentage, f: percentage.toString()+' %'}]);
             i=j;
         };
         TableAirportCarrier(carriers_airport);
@@ -618,6 +633,7 @@ $(document).ready(function() {
         var data = new google.visualization.DataTable();
         data.addColumn('string', 'Ville');
         data.addColumn('string', 'Aéroport');
+     	data.addColumn('string', 'Etat');
         data.addColumn('string', 'Compagnie la plus représentée');
         data.addColumn('number', 'Nombre de vols de la compagnie');
         data.addColumn('number', 'Nombre de vols total');

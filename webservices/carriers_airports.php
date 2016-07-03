@@ -10,15 +10,15 @@
 	$query = "SELECT 
 				a.city,
 				a.airport,
+				a.state,
 				c.description,
 				SUM(1) AS flights
 				FROM flights f
 				JOIN airports a ON (a.iata = f.Origin)
 				JOIN carriers c ON (c.code = f.UniqueCarrier)
 				WHERE (c.description IS NOT NULL) AND (a.city IS NOT NULL) AND (a.airport IS NOT NULL)
-				GROUP BY a.city, c.description, a.airport
-				ORDER BY a.airport
-					";
+				GROUP BY a.city, c.description, a.airport, a.state
+				ORDER BY a.airport";
 	
 	$result = mysqli_query($conn, $query);
 
@@ -26,8 +26,9 @@
 			$result_request[] = array(
 				'city' => $row[0],
 				'airport' => $row[1],
-			 	'carrier' => $row[2],
-			 	'vols_total' => intval($row[3])
+				'state' => $row[2],
+			 	'carrier' => $row[3],
+			 	'vols_total' => intval($row[4])
 			 	);
 	}
 
