@@ -12,7 +12,7 @@ $(document).ready(function() {
         });
     }
 
-    google.charts.load('current', { packages: ['corechart', 'geochart', 'scatter', 'table'] });
+    google.charts.load('current', { packages: ['corechart', 'geochart', 'scatter', 'table', 'bar'] });
 
 
     /***************************************
@@ -643,6 +643,40 @@ $(document).ready(function() {
         var table = new google.visualization.Table(document.getElementById('table_airport'));
 
         table.draw(data, {showRowNumber: false, width: '100%', height: '100%', sortColumn: 0});
+      }
+
+  	/***************************************
+    	Chart 42: COMMON FLIGTHS
+    ****************************************/
+
+    getRequest("webservices/comon_flights.php", function(datas_common_flights) {
+        common_flights = [];
+        for (var i = 0; i < datas_common_flights.length; i++) {
+        	var flight = datas_common_flights[i]['origin'] + " vers " + datas_common_flights[i]['dest'];
+            common_flights.push([flight,datas_common_flights[i]['total']]);
+        };
+        CommonFlights(common_flights);
+    });
+
+	function CommonFlights() {
+        var data = new google.visualization.DataTable(common_flights);
+
+		data.addColumn('string', 'Vols');
+		data.addColumn('number', 'Nombres de vols');
+		data.addRows(common_flights);
+
+      var options = {
+        hAxis: {
+          title: 'Common flight',
+        },
+        vAxis: {
+          title: 'Nombre de vols'
+        },
+      };
+
+      var chart = new google.visualization.ColumnChart(document.getElementById('common_flights'));
+
+      chart.draw(data, options);
       }
 
 });

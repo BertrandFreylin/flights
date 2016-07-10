@@ -18,7 +18,8 @@
 				JOIN carriers c ON (c.code = f.UniqueCarrier)
 				WHERE (c.description IS NOT NULL) AND (a.city IS NOT NULL) AND (a.airport IS NOT NULL)
 				GROUP BY a.city, c.description, a.airport, a.state
-				ORDER BY a.airport";
+				ORDER BY a.airport
+				LIMIT 1000";
 	
 	$result = mysqli_query($conn, $query);
 

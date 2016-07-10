@@ -10,16 +10,15 @@
 	$query = "SELECT Origin, Dest, SUM(1) AS common_flight
 				FROM flights
 				GROUP BY Origin, Dest
-				ORDER BY total DESC";
+				ORDER BY common_flight DESC";
 	
 	$result = mysqli_query($conn, $query);
 
 	while ($row = mysqli_fetch_array($result)) {
 			$result_request[] = array(
-				'city' => $row[0],
-				'airport' => $row[1],
-			 	'carrier' => $row[2],
-			 	'vols_total' => intval($row[3])
+				'origin' => $row[0],
+				'dest' => $row[1],
+			 	'total' => intval($row[2])
 			 	);
 	}
 
