@@ -1,5 +1,4 @@
 $(document).ready(function() {
-    // Pas de cache sur les requête IMPORTANT !
     $('.master_graph').addClass("loading");
 
     $.ajaxSetup({ cache: false });
@@ -652,8 +651,8 @@ $(document).ready(function() {
     getRequest("webservices/comon_flights.php", function(datas_common_flights) {
         common_flights = [];
         for (var i = 0; i < datas_common_flights.length; i++) {
-        	var flight = datas_common_flights[i]['origin'] + " vers " + datas_common_flights[i]['dest'];
-            common_flights.push([flight,datas_common_flights[i]['total']]);
+            var flight = datas_common_flights[i]['origin'] + ' vers ' + datas_common_flights[i]['dest'];
+            common_flights.push([datas_common_flights[i]['origin'],datas_common_flights[i]['dest'],datas_common_flights[i]['total']]);
         };
         CommonFlights(common_flights);
     });
@@ -661,22 +660,33 @@ $(document).ready(function() {
 	function CommonFlights() {
         var data = new google.visualization.DataTable(common_flights);
 
-		data.addColumn('string', 'Vols');
-		data.addColumn('number', 'Nombres de vols');
-		data.addRows(common_flights);
+  //       for (var i = 0; i < common_flights.length; i++)  {
+  //           getRequest("webservices/get_city_airport.php?iata="+common_flights[i][0], function(array_city_dep) {
+  //               common_flights[i][0]=array_city_dep[0]['city'];
+  //           });
+  //           console.log(common_flights[i][0]);
+  //           getRequest("webservices/get_city_airport.php?iata="+common_flights[i][1], function(array_city_dest) {
+  //               common_flights[i][1]=array_city_dest[0]['city'];
+  //           });
+  //           console.log(common_flights[i][1]);
+  //       }
 
-      var options = {
+        data.addColumn('string', 'Vols');
+        data.addColumn('number', 'Nombres de vols');
+        data.addRows(common_flights);
+
+        var options = {
         hAxis: {
-          title: 'Common flight',
+          title: 'Vols',
         },
         vAxis: {
           title: 'Nombre de vols'
         },
-      };
+        };
 
-      var chart = new google.visualization.ColumnChart(document.getElementById('common_flights'));
+        var chart = new google.visualization.ColumnChart(document.getElementById('common_flights'));
 
-      chart.draw(data, options);
-      }
+        chart.draw(data, options);
+        }
 
 });

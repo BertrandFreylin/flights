@@ -18,7 +18,7 @@
 	<script type="text/javascript" src="js/loader.js"></script>
 
 	<script type="text/javascript" src="js/dataviz.js"></script>
-	<script async defer src="//maps.googleapis.com/maps/api/js?key=AIzaSyDkp_aypAEozlHaVB4g1wF7F7lsek3OWcU" type="text/javascript"></script>
+	<script async defer src="http://maps.googleapis.com/maps/api/js?key=AIzaSyDkp_aypAEozlHaVB4g1wF7F7lsek3OWcU" type="text/javascript"></script>
 
 	<script type="text/javascript" src="js/jsapi.js"></script>
 </head>

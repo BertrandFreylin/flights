@@ -10,7 +10,8 @@
 	$query = "SELECT Origin, Dest, SUM(1) AS common_flight
 				FROM flights
 				GROUP BY Origin, Dest
-				ORDER BY common_flight DESC";
+				ORDER BY common_flight DESC
+				LIMIT 30";
 	
 	$result = mysqli_query($conn, $query);
 
