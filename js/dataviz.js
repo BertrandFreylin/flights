@@ -48,11 +48,11 @@ $(document).ready(function() {
         var options = {
             chartArea: { width: '50%' },
             hAxis: {
-                title: 'Departure-Arrival order',
+                title: 'Départ-Arrivée',
                 minValue: 0
             },
             vAxis: {
-                title: 'Airports'
+                title: 'Aéroport'
             }
         };
 
@@ -151,7 +151,7 @@ $(document).ready(function() {
     getRequest("webservices/arrival.php", function(datas_arr) {
         getRequest("webservices/departure.php", function(datas_dep) {
             map_array = [
-                ['City', 'Departure', 'Arrival'],
+                ['Ville', 'Départ', 'Arrivée'],
             ];
             var total = 0;
             for (var i = 0; i < 20; i++) {
@@ -652,7 +652,7 @@ $(document).ready(function() {
         common_flights = [];
         for (var i = 0; i < datas_common_flights.length; i++) {
             var flight = datas_common_flights[i]['origin'] + ' vers ' + datas_common_flights[i]['dest'];
-            common_flights.push([datas_common_flights[i]['origin'],datas_common_flights[i]['dest'],datas_common_flights[i]['total']]);
+            common_flights.push([flight,datas_common_flights[i]['total']]);
         };
         CommonFlights(common_flights);
     });
