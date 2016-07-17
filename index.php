@@ -26,7 +26,7 @@
 	<body>
 		<?php include ('structure/header.php'); ?>
 		<div id="content">
-<!-- <div class="graph_middle"><p class="center">Nombre de Départ/Arrivée par Aéroport</p><div id="departure_arrival" class="master_graph"><div class="modal"></div></div></div>
+<div class="graph_middle"><p class="center">Nombre de Départ/Arrivée par Aéroport</p><div id="departure_arrival" class="master_graph"><div class="modal"></div></div></div>
 <div class="graph_middle"><p class="center">Pourcentage de vols par compagnie</p><div id="carriers" class="master_graph"><div class="modal"></div></div></div>
 <div class="graph"><p class="center">Distance (en Miles) par jour du mois, des 6 premières compagnies</p><div id="combo_chart" class="master_graph"><div class="modal"></div></div></div>
 <div class="graph"><p class="center">Nombre de Départ/Arrivée par Aéroport</p><div id="map" class="master_graph"><div class="modal"></div></div></div>
@@ -44,11 +44,11 @@
 <div class="graph_middle"><p class="center">Pourcentage d'annulation des vols par compagnie</p><div id="carriers_cancel" class="master_graph"><div class="modal"></div></div></div>
 <div class="graph_middle"><p class="center">Pourcentage d'annulation des vols par compagnie rationalisé par le nombre de vols total de la compagnie</p><div id="carriers_cancel_ratio" class="master_graph"><div class="modal"></div></div></div>
 <div class="table_graph"><div id="table_airport" class="master_graph"><div class="modal"></div></div></div>
-<div class="graph"><p class="center">Vols les plus populaires</p><div id="common_flights" class="master_graph"><div class="modal"></div></div></div> -->
+<div class="graph"><p class="center">Vols les plus populaires</p><div id="common_flights" class="master_graph"><div class="modal"></div></div></div>
 <div class="graph"><p class="center">Données Live</p>
 <div id="compagnie-name"><span class="name"></span></div><div id="container" class="master_graph"><div class="modal"></div></div></div>
-<!-- <div class="graph" style="height: 520px;"><p class="center">Retard moyen par compagnie en fonction du jour de la semaine</p><select id="list-compagnie"></select>
-<div id="compagnie-name"><span class="name"></span></div><div id="delay_compagnie" class="master_graph"><div class="modal"></div></div></div> -->
+<div class="graph" style="height: 520px;"><p class="center">Retard moyen par compagnie en fonction du jour de la semaine</p><select id="list-compagnie"></select>
+<div id="compagnie-name"><span class="name"></span></div><div id="delay_compagnie" class="master_graph"><div class="modal"></div></div></div>
 		</div>
 		<?php include ('structure/footer.php'); ?>
 	</body>
