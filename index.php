@@ -21,6 +21,7 @@
 	<script async defer src="http://maps.googleapis.com/maps/api/js?key=AIzaSyDkp_aypAEozlHaVB4g1wF7F7lsek3OWcU" type="text/javascript"></script>
 
 	<script type="text/javascript" src="js/jsapi.js"></script>
+	<script type="text/javascript" src="http://code.highcharts.com/highcharts.js"></script>
 </head>
 	<body>
 		<?php include ('structure/header.php'); ?>
@@ -44,6 +45,10 @@
 <div class="graph_middle"><p class="center">Pourcentage d'annulation des vols par compagnie rationalisé par le nombre de vols total de la compagnie</p><div id="carriers_cancel_ratio" class="master_graph"><div class="modal"></div></div></div>
 <div class="table_graph"><div id="table_airport" class="master_graph"><div class="modal"></div></div></div>
 <div class="graph"><p class="center">Vols les plus populaires</p><div id="common_flights" class="master_graph"><div class="modal"></div></div></div>
+<div class="graph"><p class="center">Nombre de décolage en Live</p>
+<div id="compagnie-name"><span class="name"></span></div><div id="container" class="master_graph"><div class="modal"></div></div></div>
+<div class="graph"><p class="center">Retard moyen par compagnie en fonction du jour de la semaine</p><select id="list-compagnie"></select>
+<div id="compagnie-name"><span class="name"></span></div><div id="delay_compagnie" class="master_graph"><div class="modal"></div></div></div>
 		</div>
 		<?php include ('structure/footer.php'); ?>
 	</body>

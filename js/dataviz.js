@@ -688,5 +688,114 @@ $(document).ready(function() {
 
         chart.draw(data, options);
         }
+    /***************************************
+        Chart 167: Compagnie/Day of week
+    ****************************************/
+    function loadStats(compagnie, selection) {
+        getRequest("webservices/compagnie_dayofweek.php?code="+compagnie, function(datas_comp_day) {
+            compagnieday=[['Jour de la semaine','Retard']];
+            days = { 1: 'Lundi', 2: 'Mardi', 3: 'Mercredi', 4: 'Jeudi', 5: 'Vendredi', 6: 'Samedi', 7: 'Dimanche' };
+            for (var i = 1; i <= 7; i++) {
+                var total_delay = 0;
+                for (var j = 0; j < datas_comp_day.length; j++) {
+                    if (datas_comp_day[j]['day'] == i) {
+                        total_delay += datas_comp_day[j]['total_delay'];
+                    };
+                };
+                compagnieday.push([days[i],total_delay]);
+            };
+            CompagnieDay(compagnieday);
+        });
+
+
+        function CompagnieDay() {
+            var data = google.visualization.arrayToDataTable(compagnieday);
+
+            var options = {
+                curveType: 'function',
+                legend: { position: 'bottom' },
+                vAxis: { minValue: 0 },
+                series: { 0: { curveType: 'none' } },
+            };
+
+            var chart = new google.visualization.LineChart(document.getElementById('delay_compagnie'));
+
+            chart.draw(data, options);
+        }
+    };
+    loadStats('*');
+    /***************************************
+    Liste des compagnies
+    ****************************************/
+    
+    getRequest("webservices/list_compagnie.php", function(result) {
+        $('#list-compagnie').append($("<option></option>").text("ALL").val('*'));
+        $.each(result, function() {
+            $('#list-compagnie').append(
+                $("<option></option>").text(this.description).val(this.code)
+            );
+        });
+    });
+
+    $('#list-compagnie').on('change', function(){
+        $('#delay_compagnie').children().first().remove();
+        $('#delay_compagnie').append('<div class="modal"></div></div>');
+        loadStats($(this).val());
+    });
+    
+
+    /***************************************
+    Live Graph
+    ****************************************/
+    var chart; // global
+        
+    function requestData() {
+        $.ajax({
+            url: 'webservices/live-server-data.php', 
+            success: function(point) {
+                var series = chart.series[0],
+                    shift = series.data.length > 20; // shift if the series is longer than 20
+    
+                // add the point
+                chart.series[0].addPoint(eval(point), true, shift);
+                
+                // call it again after one second
+                setTimeout(requestData, 1000);  
+            },
+            cache: false
+        });
+    }
+        
+    $(document).ready(function() {
+        chart = new Highcharts.Chart({
+            chart: {
+                renderTo: 'container',
+                defaultSeriesType: 'spline',
+                events: {
+                    load: requestData
+                }
+            },
+            title: {
+                text: null,
+            },
+            xAxis: {
+                type: 'datetime',
+                tickPixelInterval: 150,
+                maxZoom: 20 * 1000
+            },
+            yAxis: {
+                minPadding: 0.2,
+                maxPadding: 0.2,
+                title: {
+                    text: 'Nombre',
+                    margin: 80
+                }
+            },
+            series: [{
+                name: 'Vols',
+                data: []
+            }]
+        });     
+    });
 
 });
