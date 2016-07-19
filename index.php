@@ -1,19 +1,12 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html>
 <head>
 	<title>Flights</title>
-	<!-- Inclusion CSS (librairie + perso) -->
-	<link rel="stylesheet" type="text/css" href="css/jquery.jqplot.min.css">
 	<link rel="stylesheet" type="text/css" href="css/dataviz.css">
 
 	<!-- Inclusion JS (librairie + scripts de création de graph) -->
 	<script type="text/javascript" src="js/jquery.js"></script>
 
-	<!--jqplot-->
-	<script type="text/javascript" src="js/jquery.jqplot.min.js"></script>
-	<script type="text/javascript" src="js/renderer/jqplot.dateAxisRenderer.js"></script>
-	<script type="text/javascript" src="js/renderer/jqplot.barRenderer.js"></script>
-	<script type="text/javascript" src="js/renderer/jqplot.CategoryAxisRenderer.js"></script>
 	<!--Google charts-->
 	<script type="text/javascript" src="js/loader.js"></script>
 
