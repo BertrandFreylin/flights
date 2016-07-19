@@ -754,7 +754,7 @@ $(document).ready(function() {
             url: 'webservices/live-server-data.php', 
             success: function(point) {
                 var series = chart.series[0],
-                    shift = series.data.length > 10; // shift if the series is longer than 20
+                    shift = series.data.length > 20; // shift if the series is longer than 20
             
                 chart.series[0].addPoint(eval(point), true, shift);
                 point2 = Math.round(Math.floor((Math.random() * (point[1]+1)) + 1));
@@ -783,7 +783,7 @@ $(document).ready(function() {
             xAxis: {
                 type: 'datetime',
                 tickPixelInterval: 150,
-                maxZoom: 10 * 1000
+                maxZoom: 20 * 1000
             },
             yAxis: {
                 minPadding: 0.2,

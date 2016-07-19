@@ -7,11 +7,13 @@
 	include("../bdd/connexion_bdd.php");
 	
 
-	$query = "SELECT Origin, Dest, SUM(1) AS common_flight
-				FROM flights
-				GROUP BY Origin, Dest
-				ORDER BY common_flight DESC
-				LIMIT 30";
+	$query = "SELECT aO.city, aD.city, SUM(1) AS common_flight
+                FROM flights
+                JOIN airports aO ON flights.Origin = aO.iata
+                JOIN airports aD ON flights.Dest = aD.iata
+                GROUP BY aO.city, aD.city
+                ORDER BY common_flight DESC
+                LIMIT 30";
 	
 	$result = mysqli_query($conn, $query);
 
