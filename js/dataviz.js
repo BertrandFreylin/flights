@@ -15,7 +15,7 @@ $(document).ready(function() {
 
 
     /***************************************
-    	Chart 3: Arrival Departure
+    	Nombre de Départ/Arrivée par Aéroport
     ****************************************/
 
     getRequest("webservices/arrival.php", function(datas_arr) {
@@ -62,7 +62,7 @@ $(document).ready(function() {
     }
 
     /***************************************
-    	Chart 4: Carriers Desc
+    	Pourcentage de vols par compagnie
     ****************************************/
 
     getRequest("webservices/carriers.php", function(datas_carriers) {
@@ -93,7 +93,7 @@ $(document).ready(function() {
     };
 
     /***************************************
-    	Chart 5: Combo Chart
+    	Distance (en Miles) par jour du mois, des 6 premières compagnies
     ****************************************/
 
     getRequest("webservices/distance_dayofmonth.php", function(datas_carriers_distance) {
@@ -146,7 +146,7 @@ $(document).ready(function() {
     };
 
     /***************************************
-    	Chart 6: MAP
+    	Nombre de Départ/Arrivée par Aéroport
     ****************************************/
     getRequest("webservices/arrival.php", function(datas_arr) {
         getRequest("webservices/departure.php", function(datas_dep) {
@@ -184,7 +184,7 @@ $(document).ready(function() {
     };
 
     /***************************************
-    	Chart 7: MAP - DELAY : Retard du vol en fonction de l'aéroport de départ
+    	Retard (en minutes) moyen d'un vol en fonction de l'aéroport de départ
     ****************************************/
     getRequest("webservices/delays_dep.php", function(datas_delays) {
         map_array_delays_dep = [
@@ -218,7 +218,7 @@ $(document).ready(function() {
     };
 
     /***************************************
-    	Chart 8: MAP - DELAY : Retard du vol en fonction de l'aéroport d'arrivée
+    	Retard (en minutes) moyen d'un vol en fonction de l'aéroport de départ
     ****************************************/
     getRequest("webservices/delays_arr.php", function(datas_delays) {
         map_array_delays_dest = [
@@ -292,6 +292,9 @@ $(document).ready(function() {
         DistanceYearBIS(distance_year_bis);
     });
 
+    /***************************************
+    Retard/Distance parcourue par avion par année de construction des avions
+    ****************************************/
 
     function DistanceDelayCompute() {
         var data = google.visualization.arrayToDataTable(distance_delays_compute);
@@ -317,7 +320,7 @@ $(document).ready(function() {
     }
 
     /***************************************
-		Chart 9bis: Distance/Retard
+		Distance totale parcourue par année de construction des avions
 	****************************************/
     function DistanceYear() {
         var data = google.visualization.arrayToDataTable(distance_year);
@@ -337,6 +340,9 @@ $(document).ready(function() {
 
     }
 
+    /***************************************
+        Distance par avion parcourue par année de construction des avions
+    ****************************************/
     function DistanceYearBIS() {
         var data = google.visualization.arrayToDataTable(distance_year_bis);
 
@@ -355,7 +361,7 @@ $(document).ready(function() {
 
     }
     /***************************************
-		Chart 9ter: Distance/Retard
+		Retard total par année de construction des avions
 	****************************************/
     function DelayYear() {
 
@@ -376,7 +382,9 @@ $(document).ready(function() {
         chart.draw(data, options);
 
     }
-
+    /***************************************
+        Retard par avion par année de construction des avions
+    ****************************************/
     function DelayYearBIS() {
 
         var data = google.visualization.arrayToDataTable(delay_year_bis);
@@ -397,7 +405,7 @@ $(document).ready(function() {
 
     }
     /***************************************
-		Chart 10: Manufacturer/Day of month
+		Nombre de vols par compagnie et retard moyen en fonction du jour de la semaine
 	****************************************/
     getRequest("webservices/manufacturer_dayweek.php", function(datas_man_day) {
         manufacturerday = [
@@ -445,7 +453,7 @@ $(document).ready(function() {
         chart.draw(data, options);
     }
     /***************************************
-    	Chart 11: Construction Year / Flights
+    Nombre d'avions en vols en fonction de l'année de construction des avions
     ****************************************/
     getRequest("webservices/year_construction_num_flights.php", function(datas_year_flights) {
         yearflights = [
@@ -482,14 +490,14 @@ $(document).ready(function() {
     }
 
     /***************************************
-    	Chart 6: MAP AIRPORT / CANCELATION / CARRIERS
+    	Annulation de vol par Aéroport
     ****************************************/
     getRequest("webservices/cancel_number_airport.php", function(airport_cancel) {
         map_cancel_carrier = [
             ['Aéroport', 'Nombre d\'annulation'],
         ];
         map_cancel_carrier_ratio = [
-            ['Aéroport', 'Nombre d\'annulation rationalisé (comparé au nombre de départ'],
+            ['Aéroport', 'Nombre d\'annulation rationalisé (comparé au nombre de départ)'],
         ];
         for (var i = 0; i < 20; i++) {
             var airport = airport_cancel[i]['airport'];
@@ -502,7 +510,9 @@ $(document).ready(function() {
         MapCancelCarrierRatio(map_cancel_carrier)
     });
 
-
+    /***************************************
+        Nombre d'annulation de vol par Aéroport
+    ****************************************/
     function MapCancelCarrier() {
         var data = google.visualization.arrayToDataTable(map_cancel_carrier);
 
@@ -516,7 +526,9 @@ $(document).ready(function() {
         var chart = new google.visualization.GeoChart(document.getElementById('map_cancel_carrier'));
         chart.draw(data, options);
     };
-
+    /***************************************
+        Nombre d'annulation de vol par Aéroport rationalisé par le nombre de départ à l'aéroport
+    ****************************************/
     function MapCancelCarrierRatio() {
         var data = google.visualization.arrayToDataTable(map_cancel_carrier_ratio);
 
@@ -532,7 +544,7 @@ $(document).ready(function() {
     };
 
     /***************************************
-    	Chart 42: Carriers Cancel
+    	Annulation des vols par compagnie
     ****************************************/
 
     getRequest("webservices/cancel_number_carriers.php", function(datas_carriers_cancel) {
@@ -553,7 +565,9 @@ $(document).ready(function() {
         CarriersCancelRatio(carriers_cancel_array_ratio);
     });
 
-
+    /***************************************
+        Pourcentage d'annulation des vols par compagnie
+    ****************************************/
 
     function CarriersCancel() {
 
@@ -566,7 +580,9 @@ $(document).ready(function() {
 
         chart.draw(data, options);
     };
-
+    /***************************************
+        Pourcentage d'annulation des vols par compagnie rationalisé par le nombre de vols total de la compagnie
+    ****************************************/
     function CarriersCancelRatio() {
 
         var data = google.visualization.arrayToDataTable(carriers_cancel_array_ratio);
@@ -580,7 +596,7 @@ $(document).ready(function() {
     };
 
     /***************************************
-    	Chart 42: TAB Airport Carrier
+    	TAB Airport Carrier
     ****************************************/
 
     getRequest("webservices/carriers_airports.php", function(datas_carriers_airport) {
@@ -645,7 +661,7 @@ $(document).ready(function() {
       }
 
   	/***************************************
-    	Chart 42: COMMON FLIGTHS
+    	Vols les plus populaires
     ****************************************/
 
     getRequest("webservices/comon_flights.php", function(datas_common_flights) {
@@ -659,18 +675,6 @@ $(document).ready(function() {
 
 	function CommonFlights() {
         var data = new google.visualization.DataTable(common_flights);
-
-  //       for (var i = 0; i < common_flights.length; i++)  {
-  //           getRequest("webservices/get_city_airport.php?iata="+common_flights[i][0], function(array_city_dep) {
-  //               common_flights[i][0]=array_city_dep[0]['city'];
-  //           });
-  //           console.log(common_flights[i][0]);
-  //           getRequest("webservices/get_city_airport.php?iata="+common_flights[i][1], function(array_city_dest) {
-  //               common_flights[i][1]=array_city_dest[0]['city'];
-  //           });
-  //           console.log(common_flights[i][1]);
-  //       }
-
         data.addColumn('string', 'Vols');
         data.addColumn('number', 'Nombres de vols');
         data.addRows(common_flights);
@@ -688,8 +692,9 @@ $(document).ready(function() {
 
         chart.draw(data, options);
         }
+        
     /***************************************
-        Chart 167: Compagnie/Day of week
+        Retard moyen par compagnie en fonction du jour de la semaine
     ****************************************/
     function loadStats(compagnie, selection) {
         getRequest("webservices/compagnie_dayofweek.php?code="+compagnie, function(datas_comp_day) {
