@@ -7,7 +7,7 @@
 	include("../bdd/connexion_bdd.php");
 	
 
-	$query = "SELECT code, description FROM carriers";
+	$query = "SELECT code, description FROM carriers LIMIT 500";
 
 	$result = mysqli_query($conn, $query);
 

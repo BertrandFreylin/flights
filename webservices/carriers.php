@@ -12,7 +12,8 @@
 				JOIN carriers c ON c.code = f.UniqueCarrier
 				WHERE c.description IS NOT NULL
 				GROUP BY f.UniqueCarrier
-				ORDER BY nombre_vols DESC";
+				ORDER BY nombre_vols DESC
+				LIMIT 500";
 	
 	$result = mysqli_query($conn, $query);
 

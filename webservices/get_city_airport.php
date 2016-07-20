@@ -10,7 +10,8 @@
 	
 		$query = "SELECT city
 				FROM airports
-				WHERE iata LIKE '".$iata."'";
+				WHERE iata LIKE '".$iata."'
+				LIMIT 500";
 		
 		$result = mysqli_query($conn, $query);
 	

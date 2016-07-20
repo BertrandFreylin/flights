@@ -13,7 +13,8 @@
 				FROM flights f
 				JOIN carriers c ON (c.code = f.UniqueCarrier)
                 GROUP BY c.description
-				ORDER BY somme_cancel DESC";
+				ORDER BY somme_cancel DESC
+				LIMIT 500";
 	
 	$result = mysqli_query($conn, $query);
 

@@ -12,7 +12,8 @@
 				JOIN airports a ON ((a.iata = f.Origin) or (a.iata = f.Dest))
                 WHERE Month = 1 AND (`DepDelay`+`ArrDelay`)>0
                 GROUP BY f.`DayofMonth`, a.airport
-				ORDER BY a.airport, f.`DayofMonth`";
+				ORDER BY a.airport, f.`DayofMonth`
+				LIMIT 500";
 	
 	$result = mysqli_query($conn, $query);
 

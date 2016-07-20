@@ -11,7 +11,8 @@
 				FROM flights f
 				JOIN airports a ON a.iata = f.Dest
 				GROUP BY f.Dest
-				ORDER BY somme DESC";
+				ORDER BY somme DESC
+				LIMIT 500";
 	
 	$result = mysqli_query($conn, $query);
 

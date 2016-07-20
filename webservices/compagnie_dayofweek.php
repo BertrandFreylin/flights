@@ -20,7 +20,8 @@
 				FROM flights f
 				JOIN carriers c ON c.code LIKE '".$code."'
                 GROUP BY f.DayOfWeek, c.description
-                ORDER BY total_delay DESC";
+                ORDER BY total_delay DESC
+                LIMIT 500";
 		}
 		
 		

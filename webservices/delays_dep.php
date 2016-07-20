@@ -18,7 +18,8 @@
 				FROM flights f
 				JOIN airports a ON a.iata = f.Origin
 				GROUP BY a.state
-                ORDER BY total DESC";
+                ORDER BY total DESC
+                LIMIT 500";
 	
 	$result = mysqli_query($conn, $query);
 

@@ -12,7 +12,8 @@
 				JOIN tailnum t ON t.tailnum = f.TailNum
 				WHERE (f.WeatherDelay + f.CarrierDelay + f.NASDelay + f.SecurityDelay + f.LateAircraftDelay) >= 0 AND `t`.`year`>1970
 				GROUP BY `t`.`year`
-                ORDER BY `t`.`year` DESC";
+                ORDER BY `t`.`year` DESC
+                LIMIT 500";
 	
 	$result = mysqli_query($conn, $query);
 

@@ -12,7 +12,8 @@
 				JOIN tailnum t ON t.tailnum = f.TailNum
                 WHERE ((t.manufacturer LIKE 'BOEING') or (t.manufacturer LIKE 'AIRBUS') or (t.manufacturer LIKE 'EMBRAER') or (t.manufacturer LIKE 'BOMBARDIER')) AND Month = 1
 				GROUP BY f.DayOfWeek, t.manufacturer
-                ORDER BY total_delay DESC";
+                ORDER BY total_delay DESC
+                LIMIT 500";
 	
 	$result = mysqli_query($conn, $query);
 

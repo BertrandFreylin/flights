@@ -3,18 +3,12 @@
 <head>
 	<title>Flights</title>
 	<link rel="stylesheet" type="text/css" href="css/dataviz.css">
-
-	<!-- Inclusion JS (librairie + scripts de création de graph) -->
 	<script type="text/javascript" src="js/jquery.js"></script>
-
-	<!--Google charts-->
 	<script type="text/javascript" src="js/loader.js"></script>
-
 	<script type="text/javascript" src="js/dataviz.js"></script>
-	<script async defer src="http://maps.googleapis.com/maps/api/js?key=AIzaSyDkp_aypAEozlHaVB4g1wF7F7lsek3OWcU" type="text/javascript"></script>
-
+	<script async defer src="js/async.js" type="text/javascript"></script>
 	<script type="text/javascript" src="js/jsapi.js"></script>
-	<script type="text/javascript" src="http://code.highcharts.com/highcharts.js"></script>
+	<script type="text/javascript" src="js/highcharts.js"></script>
 </head>
 	<body>
 		<?php include ('structure/header.php'); ?>

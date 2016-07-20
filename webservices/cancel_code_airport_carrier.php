@@ -13,7 +13,8 @@
                 JOIN carriers c ON (c.code = f.UniqueCarrier)
                 WHERE (f.`CancellationCode` LIKE 'A') or (f.`CancellationCode` LIKE 'B') or (f.`CancellationCode` LIKE 'C') or (f.`CancellationCode` LIKE 'D')
                 GROUP BY f.`CancellationCode`, a.airport, c.description
-				ORDER BY `f`.`CancellationCode`";
+				ORDER BY `f`.`CancellationCode`
+				LIMIT 500";
 	
 	$result = mysqli_query($conn, $query);
 

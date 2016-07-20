@@ -11,7 +11,8 @@
 				FROM flights f
 				JOIN carriers c ON c.code = f.UniqueCarrier
 				GROUP BY f.UniqueCarrier, f.DayofMonth
-				ORDER BY `f`.`DayofMonth` ASC, distance DESC";
+				ORDER BY `f`.`DayofMonth` ASC, distance DESC
+				LIMIT 500";
 	
 	$result = mysqli_query($conn, $query);
 
